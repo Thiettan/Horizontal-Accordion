@@ -1,0 +1,425 @@
+$font-stack: Helvetica,
+sans-serif;
+$primary-color: #333;
+$secondary-color: coral;
+$lightest: #e4e4e4;
+$light: #b2b2b2;
+$dark: #767676;
+$darker: #555555;
+$darkest: #222222;
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway:300,400');
+body {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.container.horizontal-accordion {
+  position: relative;
+  background: $darkest;
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+  max-width: 100%;
+
+  .App {
+    font-family: 'Lato', sans-serif;
+    width: 95%;
+    height: 100vh;
+    .title-wrap {
+      margin: 2% 0;
+
+      h1 {
+        text-align: center;
+        color: $light;
+      }
+    }
+    .box {
+      /*width: 100%;*/
+      background: $darkest;
+      margin: auto;
+      display: flex;
+      /*flex-wrap: wrap;*/
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      bottom: 20vh;
+
+      .Tile {
+        width: auto;
+        height: 500px;
+        margin: 2px;
+        color: white;
+        /*overflow: hidden;*/
+        opacity: 0.9;
+        transition-duration: 0.5s;
+        position: relative;
+
+        /*&:nth-child(1) {
+          background: coral;
+        }
+
+        &:nth-child(2) {
+          background: #00fff699;
+        }
+
+        &:nth-child(3) {
+          background: #ff50f878;
+        }
+
+        &:nth-child(4) {
+          background: #5064ff80;
+        }
+
+        &:nth-child(5) {
+          background: coral;
+        }*/
+        .info-reveal {
+          width: 250px;
+          transform: translate(270px, 50px);
+          position: absolute;
+          top: 0;
+          right: 0;
+          opacity: 0;
+          z-index: 12;
+          transition-duration: 0.25s;
+          display: none;
+
+          >div>b {
+            font-size: 120%;
+          }
+
+
+          .title {
+            font-size: 3em;
+            transition-duration: inherit;
+            opacity: 0;
+            transition-duration: 0.25s;
+            margin-bottom: 20px;
+          }
+
+          .description {
+            opacity: 0;
+            transform: translate(50px, 0);
+            font-size: 90%;
+
+            >div.info {
+              margin-bottom: 30px;
+              color: $light;
+            }
+          }
+        }
+
+        .img-container {
+          opacity: 1;
+          position: relative;
+          transition-duration: 0.5s;
+          transform: translate3d(0, 0, 0) scale(1, 1);
+          .img {
+
+            width: calc(18.5vw - 9px);
+            height: 500px;
+            transition-duration: 0.5s;
+          }
+        }
+        &[is_active='false'][is_focus='false'] {
+          opacity: 0.75;
+          transform: translate3d(0, 0, 0);
+          transition-duration: 0.5s;
+          .img-container {
+            .img {}
+          }
+
+          &:hover {
+            opacity: 1;
+            transition-duration: 0.5s;
+            .title-bottom {
+              opacity: 1;
+              transition-duration: inherit;
+            }
+          }
+
+        } //All collapsed
+        &[is_active='true'][is_focus='true'][direction='center'] {
+          opacity: 1;
+          transition-duration: 0.5s;
+          transform: translate3d(0, 0, 0) scale(1.1, 1.1);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {
+
+              width: 500px;
+              height: 500px;
+              transition-duration: 0.5s;
+            }
+          }
+
+        } //Tile selected
+        &[is_active='true'][is_focus='true'][direction='last'] {
+          opacity: 1;
+          transition-duration: 0.5s;
+          transform: translate3d(-80%, 0, 0) scale(1.1, 1.1);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {
+
+              width: 500px;
+              height: 500px;
+              transition-duration: 0.5s;
+            }
+          }
+
+        } //Selected Tile that is last
+        &[is_active='true'][is_focus='true'][direction='2ndlast'] {
+          opacity: 1;
+          transition-duration: 0.5s;
+          transform: translate3d(-100%, 0, 0) scale(1.1, 1.1);
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {
+
+              width: 500px;
+              height: 500px;
+              transition-duration: 0.5s;
+            }
+          }
+
+        } //Selected Tile that is last
+        &[is_active='false'][is_focus='true'][direction='right'] {
+          opacity: 0.25;
+          transform: translate3d(100%, 0, 0);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {}
+          }
+        }
+        &[is_active='false'][is_focus='true'][direction='right-last'] {
+          opacity: 0.25;
+          transform: translate3d(-50%, 0, 0);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {}
+          }
+        }
+        &[is_active='false'][is_focus='true'][direction='left'] {
+          opacity: 0.25;
+          transform: translate3d(-100%, 0, 0);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {}
+          }
+        }
+        &[is_active='false'][is_focus='true'][direction='left-last'] {
+          opacity: 0.25;
+          transform: translate3d(-250%, 0, 0);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {}
+          }
+        }
+        &[is_active='false'][is_focus='true'][direction='left-2ndlast'] {
+          opacity: 0.25;
+          transform: translate3d(-250%, 0, 0);
+
+          .img-container {
+            opacity: 1;
+            position: relative;
+            transition-duration: 0.5s;
+            transform: translate3d(0, 0, 0) scale(1, 1);
+            .img {}
+          }
+        }
+
+        .title-bottom {
+          border-top: 1px solid $dark;
+          margin-top: 20px;
+          font-size: 120%;
+          transition-duration: 0.25s;
+          opacity: 0.5;
+          >span {
+            color: $lightest;
+          }
+        }
+
+        &.Tile[is_active='true'] {
+
+          .info-reveal {
+            opacity: 1;
+            transition-duration: 0.25s;
+            display: block;
+
+            .title {
+              transform: translate(-100px);
+              opacity: 1;
+              transition-duration: 0.25s;
+            }
+            .description {
+              opacity: 1;
+              transform: translate(0px, 0);
+              transition-delay: 0.25s;
+              transition-duration: 0.5s;
+              width: 200px;
+            }
+          }
+
+          .title-bottom {
+            opacity: 0;
+            transition-duration: 0.25s;
+          }
+        }
+
+        &.Tile[is_active='false'][is_focus='true'] {
+
+          .title-bottom {
+            opacity: 0;
+            transition-duration: 0.25s;
+          }
+        }
+      }
+    }
+  }
+
+
+  button {
+    font: 100% $font-stack;
+    color: $primary-color;
+
+  }
+  ul,
+  p {
+    color: $secondary-color;
+  }
+
+}
+
+.row {
+  display: flex;
+
+  div {
+    background: coral
+  }
+
+  .col-2 {
+    flex: 2;
+  }
+
+  .col-7 {
+    flex: 7;
+  }
+
+  .col-3 {
+    flex: 3;
+  }
+
+}
+
+@media only screen and (max-width: 1440px) {
+
+  .container.horizontal-accordion .App .box {
+    .Tile {
+      &[is_active='true'][is_focus='true'][direction='2ndlast'] {
+        transform: translate3d(-100%, 0, 0) scale(1.1, 1.1);
+      } //Selected Tile that is last
+      &[is_active='false'][is_focus='true'][direction='right-last'] {
+        transform: translate3d(-100%, 0, 0);
+      }
+      &[is_active='false'][is_focus='true'][direction='left-last'] {
+        transform: translate3d(-300%, 0, 0);
+      }
+      &[is_active='false'][is_focus='true'][direction='left-2ndlast'] {
+        transform: translate3d(-250%, 0, 0);
+      }
+      &[is_active='true'][is_focus='true'][direction='last'] {
+        transform: translate3d(-100%, 0, 0) scale(1.1, 1.1);
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.box {
+  width: 100%;
+  height: auto;
+  border: 1px solid coral;
+  background: $dark;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  .Tile {
+    width: 16vw;
+    height: 40vw;
+    margin: 0.45vh;
+    background: coral;
+    color: white;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+      margin-left: -15vw;
+    }
+  }
+}*/
